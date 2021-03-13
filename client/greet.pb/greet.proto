@@ -1,0 +1,28 @@
+syntax="proto3";
+package greet;
+option go_package="greetpb";
+
+// [first_name, message]
+message Greeting {
+	string first_name = 1;
+	string message = 2;
+}
+
+// [Gretting{[first_name,message]}]
+message GreetRequest {
+	Greeting greeting = 1;
+}
+
+// 1
+// [result]
+message GreetResponse {
+	string result =1;
+}
+
+
+service GreetService {
+	// client Greet(GreetRequest("jonathan","hola mundo"))
+	// <- GreetResponse ("Hola jonathan, hola mundo") 
+	rpc Greet(GreetRequest) return (GreetResponse){};
+}
+
